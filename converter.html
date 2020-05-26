@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+<style>
+  body{
+    background: #f8f8f8;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+    .list-group-item::shadow{
+      background: black;
+    }
+
+    ul li{
+       margin-top: 5px;
+        
+    }
+    .content{
+      background: #ffffff;
+      border-radius: 5px;
+    }
+    .title{
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+    }
+    .from{
+      color:#696969;
+      font-weight: bold;
+    }
+    .result-length ul li{
+      list-style: none;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .result-length ul li span{
+      font-weight: 400;
+      color: #646464;
+      font-family: 'Roboto', sans-serif;
+
+    }
+    .result-length ul li::before{
+      content: "\f0da";
+       font-family: 'FontAwesome';
+      
+    }
+.list-group-item.active{
+    background-color:rgb(14, 114, 153)  !important;
+    border:none;
+}
+.navbar .navbar-nav .nav-item a{
+  color: white;
+}
+.custom-control label{
+  margin-bottom: 5px;
+  font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+
+}
+.custom-control-input:checked  ~  .custom-control-label::before {
+    color: #fff;
+    background-color: rgb(14, 114, 153);
+}
+.list-converter .list-group i{
+  margin-right: 5px;
+}
+footer p{
+ color: white;
+}
+input[type="submit"]{
+  content: "\f0da";
+       font-family: 'FontAwesome';
+
+}
+input[type="text"]{
+  background:  rgb(226, 226, 226);
+}
+
+@media (max-width: 760px) and (min-width: 500px){
+  
+  .list-group{
+    /* colum-content "colum for each width" */
+    column-count:2; 
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .list-group a i{
+    display: none;
+  }
+}
+@media(min-width:800px ){
+    
+    .list-group-horizontal{
+      display: block;
+    }
+    .converter-item-radio{
+      width: 85%;
+    }
+   .list1{
+     display: none;
+   }
+   input[type="text"]{
+     margin: auto; width: 30%;
+   }
+   
+}
+@media (max-width: 800px){
+/*   .list-group{
+    column-count: 2;
+    
+    display: block;
+    width: 100%;
+    margin-bottom: 50px;
+    
+
+
+
+  } */
+  body{
+    padding: 0;
+    margin: 0;
+  }
+  .list2{
+    display: none;
+  }
+  .list-group{
+    width: calc(100%/1);
+    column-count: 3;
+    display: block;
+  }
+  .converter-item-radio .radio-all{
+    column-count: 2;
+    display: block;
+    padding: 0px;
+  }
+  input[type="text"]{
+     text-align: center;
+   }
+  .converter-item-radio .radio-all .custom-control{
+ margin-left: 8px;
+  }
+  .list-group a{
+    font-size: 10px;
+    padding: 10px;
+  }
+  .list-group a i{
+    display: none;
+  }
+  .result-length ul {
+    column-count: 1;
+    display: block;
+    border-top: 1px solid rgb(202, 202, 202);
+    width: 100%;
+  }
+ .result-length ul li::before{
+    display: none;
+  }
+  .converter-item-radio label{
+    font-size: 12px;
+    margin: 10px 0px 10px 10px;
+  }
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="background: rgb(14, 114, 153) ;">
+    <a class="navbar-brand ml-5" href="#">Converter</a>
+
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+       
+      
+      </ul>
+   
+    </div>
+  </nav>
+  
+    <div class="container-xl mt-3" ><!--  start-container-primary -->
+      <div class="row"> <!-- row-list -->
+        <div class=" col-xl-12 col-md-12 text-center mb-3 list1">
+          <h5 class="text-center">Select an option</h5>
+          <div class="list-group  " id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-length-list" data-toggle="list" href="#list-length" role="tab" aria-controls="length"> <i class="fas fa-ruler    "></i>Length </a>
+            <a class="list-group-item list-group-item-action" id="list-area-list" data-toggle="list" href="#list-area" role="tab" aria-controls="area"><i class="fas fa-square-full"></i> Area </a>
+            <a class="list-group-item list-group-item-action" id="list-speed-list" data-toggle="list" href="#list-speed" role="tab" aria-controls="speed"><i class="fas fa-tachometer-alt"></i>  Speed </a>
+            <a class="list-group-item list-group-item-action" id="list-temperature-list" data-toggle="list" href="#list-temperature" role="tab" aria-controls="temperature"><i class="fas fa-temperature-low"></i> Temperature </a>
+            <a class="list-group-item list-group-item-action" id="list-currency-list" data-toggle="list" href="#list-currency" role="tab" aria-controls="currency"> <i class="fas fa-money-bill-alt"></i>Currency</a>
+            <a class="list-group-item list-group-item-action" id="list-mass-list" data-toggle="list" href="#list-mass" role="tab" aria-controls="mass"><i class="fas fa-balance-scale"></i>Mass </a>
+            <a class="list-group-item list-group-item-action" id="list-liquid-list" data-toggle="list" href="#list-liquid" role="tab" aria-controls="liquid"><i class="fas fa-tint"></i>Liquid </a>
+            <a class="list-group-item list-group-item-action" id="list-distance-list" data-toggle="list" href="#list-distance" role="tab" aria-controls="distance"><i class="fas fa-tape"></i>Distance </a>
+            <a class="list-group-item list-group-item-action" id="list-volume-list" data-toggle="list" href="#list-volume" role="tab" aria-controls="volume"> <i class="fas fa-cube"></i>Volume</a>
+            <a class="list-group-item list-group-item-action" id="list-time-list" data-toggle="list" href="#list-time" role="tab" aria-controls="time"> <i class="fas fa-clock"></i>Time</a>
+            <a class="list-group-item list-group-item-action" id="list-weigth-list" data-toggle="list" href="#list-weigth" role="tab" aria-controls="weigth"><i class="fas fa-weight"></i>Weigth </a> 
+              </div>
+          </div>
+      
+      
+      </div> <!-- end row-list -->
+
+        <div class="row content p-5"> <!-- start-row-primary -->
+          
+            <div class=" col-xl-4 col-md-4 col-sm-12 col-12 list2"> <!-- list-converte -->
+              <div class="row " style="width: 100%;"> <!-- row-list -->
+                <div class=" col-xl-12 col-md-12 list-converter ">
+                  <div class="list-group  " id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-length-list" data-toggle="list" href="#list-length" role="tab" aria-controls="length"> <i class="fas fa-ruler    "></i>Length </a>
+                    <a class="list-group-item list-group-item-action" id="list-area-list" data-toggle="list" href="#list-area" role="tab" aria-controls="area"><i class="fas fa-square-full"></i> Area </a>
+                    <a class="list-group-item list-group-item-action" id="list-speed-list" data-toggle="list" href="#list-speed" role="tab" aria-controls="speed"><i class="fas fa-tachometer-alt"></i>  Speed </a>
+                    <a class="list-group-item list-group-item-action" id="list-temperature-list" data-toggle="list" href="#list-temperature" role="tab" aria-controls="temperature"><i class="fas fa-temperature-low"></i> Temperature </a>
+                    <a class="list-group-item list-group-item-action" id="list-currency-list" data-toggle="list" href="#list-currency" role="tab" aria-controls="currency"> <i class="fas fa-money-bill-alt"></i>Currency</a>
+                    <a class="list-group-item list-group-item-action" id="list-mass-list" data-toggle="list" href="#list-mass" role="tab" aria-controls="mass"><i class="fas fa-balance-scale"></i>Mass </a>
+                    <a class="list-group-item list-group-item-action" id="list-liquid-list" data-toggle="list" href="#list-liquid" role="tab" aria-controls="liquid"><i class="fas fa-tint"></i>Liquid </a>
+                    <a class="list-group-item list-group-item-action" id="list-distance-list" data-toggle="list" href="#list-distance" role="tab" aria-controls="distance"><i class="fas fa-tape"></i>Distance </a>
+                    <a class="list-group-item list-group-item-action" id="list-volume-list" data-toggle="list" href="#list-volume" role="tab" aria-controls="volume"> <i class="fas fa-cube"></i>Volume</a>
+                    <a class="list-group-item list-group-item-action" id="list-time-list" data-toggle="list" href="#list-time" role="tab" aria-controls="time"> <i class="fas fa-clock"></i>Time</a>
+                    <a class="list-group-item list-group-item-action" id="list-weigth-list" data-toggle="list" href="#list-weigth" role="tab" aria-controls="weigth"><i class="fas fa-weight"></i>Weigth </a> 
+                      </div>
+                  </div>
+              
+              
+              </div> <!-- end row-list -->
+      
+  
+    </div>
+  
+    <div class="col-xl-8 col-md-8 col-sm-12 col-12">
+    <div class="tab-content" id="nav-tabContent"> <!-- start-content -->
+         
+      <div class="tab-pane fade show active" id="list-length" role="tabpanel" aria-labelledby="list-length-list"> <!-- START LENGTH -->
+        <div class="row mx-auto">
+          <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+            <h4 class="mt-1 title"> Convert Length</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div> <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12  " > <!-- start--col-length -->
+            
+              <div class="row mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all mt-1"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Meter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2">Kilometer</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Centimeter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio4">Milimeter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio5">Micrometer</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio6" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio6">Nanometer</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio7" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio7">Mile</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio8" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio8">Yard</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio9" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio9">Foot</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio10" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio10">Inch</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio11" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio11">Light Year</label>
+                  </div>
+                 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Meter</li>
+                    <li> <span>10000</span> Kilometer</li>
+                    <li> <span>10000</span> Centimeter</li>
+                    <li> <span>100000</span> Milimeter</li>
+                    <li> <span>24.45</span> Micrometer</li>
+                    <li> <span>39005.2</span> Nanometer</li>
+                    <li> <span>3258.366</span> Mile</li>
+                    <li> <span>109.36</span> Yard</li>
+                    <li> <span>0.2</span> Foot</li>
+                    <li> <span>80.5</span> Inch</li>
+                    <li> <span>0.66</span> Light Year</li>
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div>
+           
+          </div> <!-- END LENGTH -->
+          
+
+      <div class="tab-pane fade" id="list-area" role="tabpane2" aria-labelledby="list-area-list"> <!-- START-AREA -->
+
+        <div class="row mx-auto">
+          <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+            <h4 class="mt-1 title"> Convert Area</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio12" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio12">Square Meter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio13" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio13">Square Kilometer</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio14" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio14">Square Centimeter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio15" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio15">Square Micrometer</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio16" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio16">Square Mile</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio17" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio17">Square Foot</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio18" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio18">Square Inch</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio19" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio19">Square Yard</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio20" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio20">Hectarea</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio21" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio21">Acre</label>
+                  </div>
+                
+                 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Square Meter</li>
+                    <li> <span>10000</span> Square Kilometer</li>
+                    <li> <span>10000</span> Square Centimeter</li>
+                    <li> <span>100000</span> Square Micrometer</li>
+                    <li> <span>24.45</span> Square Mile</li>
+                    <li> <span>39005.2</span> Square Foot</li>
+                    <li> <span>3258.366</span> Square Inch</li>
+                    <li> <span>109.36</span> Square Yard</li>
+                    <li> <span>0.2</span> Hectarea</li>
+                    <li> <span>80.5</span> Acre</li>
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div>
+           
+
+      </div>  <!-- END-AREA -->
+    
+
+      <div class="tab-pane fade" id="list-speed" role="tabpane11" aria-labelledby="list-speed-list"> <!-- START-SPEED -->
+        
+        <div class="row mx-auto">
+          <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+            <h4 class="mt-1 title"> Convert Speed</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div> <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio22" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio22">Miles Per Hour</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio23" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio23">Meter Per Hour</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio24" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio24">Kilometer Per Hour</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio25" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio25">Foot Per Hour</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio26" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio26">Knot</label>
+                  </div>
+                 
+                
+                 
+                
+                 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Miles Per Hour</li>
+                    <li> <span>10000</span> Meter Per Hour</li>
+                    <li> <span>10000</span> Kilometer Per Hour</li>
+                    <li> <span>100000</span> Foot Per Hour</li>
+                    <li> <span>24.45</span> Knot</li>
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div>
+           
+      </div> <!-- END-SPEED-->
+
+      <div class="tab-pane fade" id="list-temperature" role="tabpane3" aria-labelledby="list-temperature-list"> <!-- START TEMPERATURE -->
+        <div class="row mx-auto">
+          <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+            <h4 class="mt-1 title"> Convert Temperature</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio27" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio27">Celsius</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio28" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio28">Fahrenheit</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio29" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio29">Kelvin</label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Celsius</li>
+                    <li> <span>10000</span> Fahrenheit</li>
+                    <li> <span>10000</span> Kelvin</li>
+                  
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div>
+      </div> <!-- END-TEMPERATURE -->
+
+      <div class="tab-pane fade" id="list-currency" role="tabpane4" aria-labelledby="list-currency-list"> <!-- START CURRENCY -->
+        <div class="row mx-auto">
+          <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+            <h4 class="mt-1 title"> Convert Currency</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio30" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio30">Australian Dollar</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio31" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio31">British Pound Sterling</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio32" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio32">Canadian Dollar</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio33" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio33">Chinese yuan renmibi</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio34" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio34">Crotian kuna</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio35" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio35">Czech koruna</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio36" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio36">Danish Krone</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio37" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio37">Euro</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio38" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio38">Hong Kong Dollar</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio39" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio39">Hungarian forint</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio40" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio40">Icelandic Krona</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio41" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio41">Indian Rupe</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio42" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio42">Indonesian Rupiah</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio43" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio43">Israeli Shekel</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio44" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio44">Japenese Yen</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio45" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio45">Malaysian Rinng</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio46" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio46">Mexican Peso</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio47" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio47">New Zealand Dollar</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio48" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio48">Norwegian Krone</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio49" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio49">Phillipine Peso</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio50" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio50">Polish Zioly</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio51" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio51">Romanian Leu</label>
+                  </div> 
+                   <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio52" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio52">Russian Ruble</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio53" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio53">Singapore Dollar</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio54" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio54">South African Rand</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio55" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio55">South Korean Won</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio56" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio56">Swedish Krona</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio57" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio57">Swiss Franc</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio58" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio58">Thai Baht</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio59" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio59">Turkish Lira</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio60" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio60">United Dollars</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio61" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio61">Bulgarian Lev</label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Australian Dollar</li>
+                    <li> <span>10000</span> British Pound Sterling</li>
+                    <li> <span>10000</span> Canadian Dollar</li>
+                    <li> <span>1000</span> Chinese yuan renmibi</li>
+                    <li> <span>10000</span> Crotian kuna</li>
+                    <li> <span>10000</span> Czech koruna</li>
+                    <li> <span>1000</span> Danish Krone</li>
+                    <li> <span>10000</span> Euro</li>
+                    <li> <span>10000</span> Hong Kong Dollar</li>
+                    <li> <span>1000</span> Hungarian forint</li>
+                    <li> <span>10000</span> Icelandic Krona</li>
+                    <li> <span>10000</span> Indian Rupe</li>
+                    <li> <span>1000</span> Indonesian Rupiah</li>
+                    <li> <span>10000</span> Israeli Shekel</li>
+                    <li> <span>10000</span> Japenese Yen</li>
+                    <li> <span>1000</span> Mexican Peso</li>
+                    <li> <span>10000</span> New Zealand Dollar</li>
+                    <li> <span>10000</span> Norwegian Krone</li>
+                    <li> <span>1000</span> Phillipine Peso</li>
+                    <li> <span>10000</span> Polish Zioly</li>
+                    <li> <span>10000</span> Romanian Leu</li>
+                    <li> <span>1000</span> Russian Ruble</li>
+                    <li> <span>10000</span> Singapore Dollar</li>
+                    <li> <span>10000</span> South African Rand</li>
+                    <li> <span>1000</span> South Korean Won</li>
+                    <li> <span>10000</span> Swedish Krona</li>
+                    <li> <span>10000</span> Swiss Franc</li>
+                    <li> <span>1000</span> Thai Baht</li>
+                    <li> <span>10000</span> Turkish Lira</li>
+                    <li> <span>10000</span> United Dollars</li>
+                    <li> <span>10000</span> Bulgarian Lev</li>
+
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div>
+      </div><!-- END-CURRENCY -->
+
+      <div class="tab-pane fade" id="list-mass" role="tabpane5" aria-labelledby="list-mass-list">. <div class="row mx-auto">
+        <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+          <h4 class="mt-1 title"> Convert Mass</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio62" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio62">Gram
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio63" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio63">Kilogram
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio64" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio64">Microgram</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio65" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio65">Tonnes
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio66" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio66">Imperial Ton
+                      </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio67" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio67">US Ton
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio68" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio68">Stone
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio69" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio69">Pound</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio70" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio70">Ounce</label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Gram</li>
+                    <li> <span>10000</span> Fahrenheit</li>
+                    <li> <span>10000</span> Kilogram</li>
+                    <li> <span>10000</span> Microgram</li>
+                    <li> <span>10000</span> Tonnes</li>
+                    <li> <span>10000</span> Imperial Ton</li>
+                    <li> <span>10000</span> Stone</li>
+                    <li> <span>10000</span> Pound</li>
+                    <li> <span>10000</span> Ounce</li>
+
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div></div>
+      <div class="tab-pane fade" id="list-liquid" role="tabpane6" aria-labelledby="list-liquid-list"> <div class="row mx-auto">
+        <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+          <h4 class="mt-1 title"> Convert Liquid</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio71" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio71">Liter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio72" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio72">Milliliter</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio73" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio73">Cup</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio74" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio74">Us Gallon
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio75" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio75">Imperial Gallon
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio76" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio76">US Quart
+                    </label>
+                  </div> 
+                   <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio77" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio77">Imperial Quart
+                    </label>
+                  </div> 
+                   <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio78" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio78">Imperial Pint
+
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio79" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio79">US Fluid Ounce
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio80" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio80">Imperial Fluid Ounce </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio81" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio81">US Table Spoon</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio82" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio82">Imperial Table Spoon</label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio83" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio83">US Tea Spoon </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio84" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio84">Imperial Tea Spoon</label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Liter</li>
+                    <li> <span>10000</span> Milliliter</li>
+                    <li> <span>10000</span> Cup</li>
+                    <li> <span>10000</span> Us Gallon </li>
+
+                    <li> <span>10000</span> Imperial Gallon
+                    </li>
+
+                    <li> <span>10000</span> US Quart
+                    </li>
+
+                    <li> <span>10000</span> Imperial Quart
+                    </li>
+
+                    <li> <span>10000</span> Imperial Pint
+                    </li>
+
+                    <li> <span>10000</span> US Fluid Ounce
+                    </li>
+
+                    <li> <span>10000</span> Imperial Fluid Ounce
+                    </li>
+                    <li> <span>10000</span> US Table Spoon
+                    </li>
+                    <li> <span>10000</span> Imperial Table Spoon
+                    </li>
+                    <li> <span>10000</span> US Tea Spoon
+
+                    </li>
+                    <li> <span>10000</span> Imperial Tea Spoon
+
+                    </li>
+
+
+                  
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div></div>
+      <div class="tab-pane fade" id="list-distance" role="tabpane7" aria-labelledby="list-distance-list">. <div class="row mx-auto">
+        <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+          <h4 class="mt-1 title"> Convert Distance</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio85" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio85">Meter
+                    </label>
+                  </div>
+              
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio86" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio86">Centimeter
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio87" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio87">Centimeter
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio88" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio88">Mile
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio89" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio89">Foot
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio90" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio90">Inch
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio91" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio91">Yard
+                    </label>
+                  </div>
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Meter</li>
+                    <li> <span>10000</span> Kilometer</li>
+                    <li> <span>10000</span> Centimeter</li>
+                    <li> <span>10000</span> Mile</li>
+                    <li> <span>10000</span> Foot</li>
+                    <li> <span>10000</span> Inch</li>
+                    <li> <span>10000</span> Yard</li>
+   
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div></div>
+      <div class="tab-pane fade" id="list-volume" role="tabpane8" aria-labelledby="list-volume-list"> <div class="row mx-auto">
+        <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+          <h4 class="mt-1 title"> Convert Volume</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Cubic Meter
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2">Cubic Kilometer
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Cubic Centimeter
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Cubic Mile
+
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Cubic Foot
+
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Cubic Inch
+
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Cubic Yard </label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Cubic Meter
+                    </li>
+                    <li> <span>10000</span> Cubic Kilometer
+                    </li>
+                    <li> <span>10000</span> Cubic Mile
+
+
+                    </li>
+                    <li> <span>10000</span> Cubic Foot
+
+                    </li>
+                    <li> <span>10000</span> Cubic Inch
+
+                    </li>
+                    <li> <span>10000</span> Cubic Yard
+
+                    </li>
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div></div>
+      <div class="tab-pane fade" id="list-time" role="tabpane9" aria-labelledby="list-time-list"> <div class="row mx-auto">
+        <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+          <h4 class="mt-1 title"> Convert Time</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div> <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio92" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Second</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio93" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2">Millisecond</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio94" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio3">Microsecond
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio95" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio95">Nanosecond
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio96" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio96">Picosecond
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio97" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio97">Minute
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio98" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio98">Hour
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio99" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio99">Day
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio100" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio100">Week
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio101" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio101">Month
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio102" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio102">Year
+                    </label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Second</li>
+                    <li> <span>10000</span> Millisecond</li>
+                    <li> <span>10000</span> Microsecond</li>
+                    <li> <span>1000</span> Nanosecond</li>
+                    <li> <span>10000</span> Fahrenheit</li>
+                    <li> <span>10000</span> Picosecond </li>
+                    <li> <span>1000</span> Minute</li>
+                    <li> <span>10000</span> Hour</li>
+                    <li> <span>10000</span> Day</li>
+                    <li> <span>1000</span> Week</li>
+                    <li> <span>10000</span> Month</li>
+                    <li> <span>10000</span> Year  </li>
+                  
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div></div>
+      <div class="tab-pane fade" id="list-weigth" role="tabpane10" aria-labelledby="list-weigth-list">. <div class="row mx-auto">
+        <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+          <h4 class="mt-1 title"> Convert Weight</h4>
+            <form action="">
+              <input type="text" class="form-control" placeholder="Value here">
+          </div>
+          <div class="col-xl-12 col-md-12 col-sm-12 from-to mt-2"><!-- From- To -->
+            <div class="row  text-center from w-75 mx-auto">
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4  text-left"><p>From</p></div>
+              <div class="col-xl-4 col-md-4 col-sm-4 col-4 text-left"><i class="fas fa-equals"></i></div>
+              <div class="col-xl-1  col-md-1 col-sm-1 col-1"><p>To</p></div>
+              
+            </div>  
+          </div>  <!-- end-from -->
+          <div class="col-xl-12 col-md-12 col-sm-12 mt-1 " > <!-- start--col-length -->
+            
+              <div class="row mt-2 mx-auto converter-item-radio">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 radio-all"> <!-- start content radion -->
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio103" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio103">Kilogram</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio104" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio104">Metric Ton
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio105" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio105">Long Ton
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio106" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio106">Short Ton
+
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio107" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio108">Pound
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio109" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio109">Ounce
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio110" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio110">Carrat
+                    </label>
+                  </div> 
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio111" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio111">Atomic Mass Unit
+
+                    </label>
+                  </div> 
+                </div> <!-- end-content-radio-button -->
+                
+        
+                <div class="col-xl-6 col-md-6 col-sm-6 col-12 result-length"><!-- start-content-result -->
+                  <ul>
+                    <li> <span>1000</span> Kilogram</li>
+                    <li> <span>10000</span> Metric Ton
+                    </li>
+                    <li> <span>10000</span> Long Ton
+                    </li>
+                    <li> <span>10000</span> Short Ton
+
+                    </li>
+                    <li> <span>10000</span> Pound
+                    </li>
+                    <li> <span>10000</span> Ounce
+                    </li>
+                    <li> <span>10000</span> Carrat
+                    </li>
+                    <li> <span>10000</span> Atomic Mass Unit
+
+                    </li>
+                  
+                    
+                  </ul>
+                </div>
+                   <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                     
+                     <button type="submit" class="btn btn-success mt-2" ><i class="fas fa-sync mr-2"></i>Converter</button>
+                     <button type="reset" class="btn btn-primary mt-2" ><i class="fas fa-broom"></i> Clear</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                   </div> <!-- end--col-length -->
+              </div></div>
+
+        </div><!-- end-content -->
+ 
+          </div>
+</div> <!-- end-row -->
+    </div> <!-- end-container-first -->
+      <footer class="mt-3"  style="background-color: rgb(14, 114, 153);">
+        <div class="container-fluid">
+          <div class="row w-50 mx-auto">
+            <div class="col-md-12 text-center mt-3">
+              <p>©2020 Company</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
